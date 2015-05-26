@@ -14,7 +14,7 @@ impacted.
 
 This script can check for the presence of impacted PSU's.
 
-Usage:  FN63894-CheckPsu.py.py [options]
+Usage:  FN63894-CheckPsu.py [options]
 -h, --help                         Show this help information and exit.
 -i IP, --ip=IP                     UCSM IP Address
 -u Username, --username=Useranme   Read Only Username
