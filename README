@@ -14,7 +14,7 @@ impacted.
 
 This script can check for the presence of impacted PSU's.
 
-Usage:  UCS_Health_Check.py [options]
+Usage:  FN63894-CheckPsu.py.py [options]
 -h, --help                         Show this help information and exit.
 -i IP, --ip=IP                     UCSM IP Address
 -u Username, --username=Useranme   Read Only Username
@@ -36,7 +36,3 @@ Checking...
 If you have a PSU effected by FN63894, More information can be found here:
 
 http://www.cisco.com/c/en/us/support/docs/field-notices/638/fn63894.html
-
-
-
-
