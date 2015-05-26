@@ -77,20 +77,36 @@ if __name__ == "__main__":
 
       # Check for the effected PSU.
 
+    suspect_psu=0
+    good_psu=0
+    unknown_psu=0
+    non_6296=0
+
     print "Checking..."
     for psu in handle.GetManagedObject(None, EquipmentPsu.ClassId()):
         if ("sys/switch" in psu.Dn) and ("UCS-PSU-6296UP-AC" in psu.Model):
-           if "-A0" in psu.Revision:
-               print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
-                     " needs to be replaced per FN63894.  "
-           elif ("-B0" in psu.Revision) and ("UCS-PSU-6296UP-AC" in psu.Model):
-               print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
-                     " needs to be replaced per FN63894."
-           else:
-              print "Thepower supply in " + psu.Dn + " is not affected by FN63894."
+          if "C" not in psu.Revision:
+            print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
+                  " needs to be replaced per FN63894.  "
+            suspect_psu += 1
+          elif "C" in psu.Revision:
+            print "The PSU in " + psu.Dn + \
+                  " is Revision \"C\" and not impacted by FN63894."
+            good_psu += 1
+          else:
+            print "The PSU in " + psu.Dn + " can not be evaluated by Revision. Please check manually"
+            unknown_psu += 1
         else:
             print ".",
+            non_6296 += 1
     print "Done"
+    print ""
+    print "Found the following about your UCS Domain"
+    print ""
+    print "PSU's impaced by FN63894: " + str(suspect_psu)
+    print "PSU's not impacted by FN63894: " + str(good_psu)
+    print "PSU's not evaluated due to no Revision information: " + str(unknown_psu)
+    print "Non UCS-PSU-6296UP-AC PSU's: " + str(non_6296)
     print ""
     print "If you have a PSU effected by FN63894, More information can be found here:\n"
     print "http://www.cisco.com/c/en/us/support/docs/field-notices/638/fn63894.html"
