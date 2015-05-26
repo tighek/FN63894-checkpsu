@@ -2,11 +2,24 @@
 #
 # Check for FN63894 PSU issue on 6296 Fabric Interconnects
 #
-# By Rusty Buzhardt
+# Copyright 2015 Rusty Buzhardt
 #
-
-
-
+# Licensed under the Apache License, Version 2.0 (the "License") available
+# at  http://www.apache.org/licenses/LICENSE-2.0.  You may not use this
+# script except in compliance with the License.
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Usage:  FN63894-CheckPsu.py [options]
+# -h, --help                          Show this help information and exit.
+# -i IP, --ip=IP                      UCSM IP Address
+# -u Username, --username=Username    Read Only User Name
+# -p Password, --password=Password    Password for Read Only Username
+#
 
 from pprint import pprint
 from UcsSdk import *
@@ -14,7 +27,6 @@ from UcsSdk.MoMeta.EquipmentPsu import EquipmentPsu
 import getpass
 import optparse
 import platform
-
 
 def getpassword(prompt):
   if platform.system() == "Linux":
@@ -25,8 +37,6 @@ def getpassword(prompt):
     return getpass.unix_getpass(prompt=prompt)
   else:
     return getpass.getpass(prompt=prompt)
-
-
 
 if __name__ == "__main__":
   try:
@@ -57,7 +67,6 @@ if __name__ == "__main__":
       print "Thanks for providing the password."
     elif not options.password:
       options.password = getpassword("UCS Manager Password: ")
-
 
     handle = UcsHandle()
     handle.Login(options.ip, options.userName, options.password)

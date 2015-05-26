@@ -1,0 +1,21 @@
+FN - 63894 - UCS-PSU-6296UP-AC PSU Silent Reload Failure
+
+http://www.cisco.com/c/en/us/support/docs/field-notices/638/fn63894.html
+
+A particular component failure in UCS-PSU-6296UP-AC and UCS-PSU-6296UP-AC= power supply
+units (PSUs) can cause the entire UCS 6296 fabric interconnect to reload.  
+
+All UCS-PSU-6296UP-AC and UCS-PSU-6296UP-AC= power supplies with revision number -A0 and
+-B0 are impacted.
+
+UCS-PSU-6296UP-AC and UCS-PSU-6296UP-AC= PSUs with a rev of -C0 or higher are not
+impacted.
+
+
+This script can check for the presence of impacted PSU's.
+
+Run from a command prompt:
+
+
+
+
