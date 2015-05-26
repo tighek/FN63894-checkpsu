@@ -14,7 +14,28 @@ impacted.
 
 This script can check for the presence of impacted PSU's.
 
-Run from a command prompt:
+Usage:  UCS_Health_Check.py [options]
+-h, --help                         Show this help information and exit.
+-i IP, --ip=IP                     UCSM IP Address
+-u Username, --username=Useranme   Read Only Username
+-p Password, --password=Password   Password for Read Only Username
+
+
+Example usage:
+
+tkuykend$ python FN63894-CheckPsu.py -i 10.10.10.10 -u readonly -p readonly
+
+Check for: FN63894 UCS-PSU-6296UP-AC PSU Silent Reload
+
+Connecting to UCS Manager at address 10.10.10.10
+Logging in as readonly
+Thanks for providing the password.
+Checking...
+. . . . . . . . . . . . . . . . . . . . . . Done
+
+If you have a PSU effected by FN63894, More information can be found here:
+
+http://www.cisco.com/c/en/us/support/docs/field-notices/638/fn63894.html
 
 
 

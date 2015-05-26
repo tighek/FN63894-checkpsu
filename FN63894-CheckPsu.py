@@ -49,6 +49,10 @@ if __name__ == "__main__":
 
     # Check for a command line FI IP, if not prompt for it.
 
+    print ""
+    print "Check for: FN63894 UCS-PSU-6296UP-AC PSU Silent Reload"
+    print ""
+
     if options.ip:
       print "Connecting to UCS Manager at address " + options.ip
     elif not options.ip:
