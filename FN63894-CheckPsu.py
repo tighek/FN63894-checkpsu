@@ -92,22 +92,25 @@ if __name__ == "__main__":
     for psu in handle.GetManagedObject(None, EquipmentPsu.ClassId()):
         if ("sys/switch" in psu.Dn) and ("UCS-PSU-6296UP-AC" in psu.Model):
           if "341-0495-01" in psu.PartNumber:
+            print "341-0495-01 " + psu.Dn + psu.PartNumber + psu.Revision
             if "C" not in psu.Revision:
               print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
-                    " needs to be replaced per FN63894.  "
+                    " is Part Number 341-0495-01 and needs to be replaced per FN63894.  "
               suspect_psu += 1
             elif "C" in psu.Revision:
               print "The PSU in " + psu.Dn + \
-                    " is Revision \"C\" and not impacted by FN63894."
+                    " is Part Number 341-0495-01 Revision \"C\" and not impacted by FN63894."
               good_psu += 1
           elif "341-0523-01" in psu.PartNumber:
+            print "341-0523-01 " + psu.Dn + psu.PartNumber + psu.Revision
             print "The PSU in " + psu.Dn + \
-                  " is Revision \"C\" and not impacted by FN63894."
+                  " is Part Number 341-0523-01 and not impacted by FN63894."
             good_psu += 1
           else:
-            print "The PSU in " + psu.Dn + " can not be evaluated. Please check manually."
+            print "The PSU in " + psu.Dn + " can not be evaluated by Part Number." + \
+                  " Please check manually."
             unknown_psu += 1
-        else:
+        elif ("sys/switch" in psu.Dn) and ("UCS-PSU-6296UP-AC" not in psu.Model):
             print ".",
             non_6296 += 1
     print "Done"
