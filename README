@@ -21,7 +21,7 @@ Usage:  FN63894-CheckPsu.py [options]
 
 Example usage:
 
-tkuykend$ python FN63894-CheckPsu.py -i 10.10.10.10 -u readonly -p readonly
+user$ python FN63894-CheckPsu.py -i 10.10.10.10 -u readonly -p readonly
 
 Check for: FN63894 UCS-PSU-6296UP-AC PSU Silent Reload
 
@@ -29,8 +29,18 @@ Connecting to UCS Manager at address 10.10.10.10
 Logging in as readonly
 Thanks for providing the password.
 Checking...
-. . . . . . . . . . . . . . . . . . . . . . Done
+
+Done
+
+Found the following about your UCS Domain
+
+PSU's impaced by FN63894: 0
+PSU's not impacted by FN63894: 0
+PSU's not evaluated due to no Revision information: 0
+Non UCS-PSU-6296UP-AC PSU's: 0
 
 If you have a PSU effected by FN63894, More information can be found here:
 
 http://www.cisco.com/c/en/us/support/docs/field-notices/638/fn63894.html
+
+
