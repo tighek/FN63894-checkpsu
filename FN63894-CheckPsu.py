@@ -102,7 +102,6 @@ if __name__ == "__main__":
                     " is Part Number 341-0495-01 Revision \"C\" and not impacted by FN63894."
               good_psu += 1
           elif "341-0523-01" in psu.PartNumber:
-            print "341-0523-01 " + psu.Dn + psu.PartNumber + psu.Revision
             print "The PSU in " + psu.Dn + \
                   " is Part Number 341-0523-01 and not impacted by FN63894."
             good_psu += 1
