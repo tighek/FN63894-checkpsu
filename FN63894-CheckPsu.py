@@ -2,7 +2,7 @@
 #
 # Check for FN63894 PSU issue on 6296 Fabric Interconnects
 #
-# Copyright 2015 Rusty Buzhardt
+# Copyright 2015 Rusty Buzhardt and Tighe Kuykendall
 #
 # Licensed under the Apache License, Version 2.0 (the "License") available
 # at  http://www.apache.org/licenses/LICENSE-2.0.  You may not use this
@@ -20,6 +20,12 @@
 # -u Username, --username=Username    Read Only User Name
 # -p Password, --password=Password    Password for Read Only Username
 #
+# May 26, 2015
+# Initial release.
+#
+# June 3, 2015
+# Updated check for Part Number per the revised Field Notice.
+# 
 
 from pprint import pprint
 from UcsSdk import *
@@ -85,16 +91,21 @@ if __name__ == "__main__":
     print "Checking..."
     for psu in handle.GetManagedObject(None, EquipmentPsu.ClassId()):
         if ("sys/switch" in psu.Dn) and ("UCS-PSU-6296UP-AC" in psu.Model):
-          if "C" not in psu.Revision:
-            print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
-                  " needs to be replaced per FN63894.  "
-            suspect_psu += 1
-          elif "C" in psu.Revision:
+          if "341-0495-01" in psu.PartNumber:
+            if "C" not in psu.Revision:
+              print "Please contact Cisco TAC.  The PSU in " + psu.Dn + \
+                    " needs to be replaced per FN63894.  "
+              suspect_psu += 1
+            elif "C" in psu.Revision:
+              print "The PSU in " + psu.Dn + \
+                    " is Revision \"C\" and not impacted by FN63894."
+              good_psu += 1
+          elif "341-0523-01" in psu.PartNumber:
             print "The PSU in " + psu.Dn + \
                   " is Revision \"C\" and not impacted by FN63894."
             good_psu += 1
           else:
-            print "The PSU in " + psu.Dn + " can not be evaluated by Revision. Please check manually"
+            print "The PSU in " + psu.Dn + " can not be evaluated. Please check manually."
             unknown_psu += 1
         else:
             print ".",
